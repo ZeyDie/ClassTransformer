@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+		mavenCentral()
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/maven"
+        }
+		maven {
+			name = "maven"
+			url = "https://repo1.maven.org/maven2"
+		}
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+sourceCompatibility = targetCompatibility = '1.7'
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.7'
+}
+
+version = "1.6.4"
+group = ""
+archivesBaseName = "ClassTransformer"
+
+minecraft {
+	version = "1.6.4-9.11.1.963"
+}
+
+task devJar(type: Jar) {
+	classifier = 'dev'
+	from sourceSets.main.output
+}
+
+task sourcesJar(type: Jar) {
+	classifier = 'sources'
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives devJar
+	archives sourcesJar
+}
+
+jar {
+    manifest {
+        attributes(
+            'TweakClass' : "ru.zoom4ikdan4ik.transformer.Tweaker"
+        )
+    }
+}
