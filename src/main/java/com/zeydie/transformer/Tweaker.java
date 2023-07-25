@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.List;
 
-public final class Tweaker implements ITweaker {
+public class Tweaker implements ITweaker {
     @Override
     public void acceptOptions(
             @NotNull final List<String> args,
